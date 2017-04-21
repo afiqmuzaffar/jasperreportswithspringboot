@@ -23,7 +23,12 @@ mvn clean package && java -jar target/jasperreportswithboot-0.0.1-SNAPSHOT.jar
 
 Example:
 ```bash
-curl "http://localhost:8080/report?name=rpt_all&format=pdf&id=1"
+## All records
+curl "http://localhost:8080/report?name=rpt_all&format=pdf"
+
+## Single records
+curl "http://localhost:8080/report?name=rpt_detail&format=pdf&id=1"
+
 ```
 
 ## Data
