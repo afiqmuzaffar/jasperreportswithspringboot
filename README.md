@@ -8,16 +8,31 @@ Mostly uses concept of JasperReportsViewResolver as defined here http://stackove
 
 Also the report included using my custom db and data so try putting your own .jrxml report there before trying to run.
 
+Run
+
+```bash
+mvn clean spring-boot:run
+```
+
+Package and Run
+
+```bash
+mvn clean package && java -jar target/jasperreportswithboot-0.0.1-SNAPSHOT.jar
+```
 `The jasper endpoints shall be like http://localhost:8080/report/{reportname}?format={format}&id={id} (id param are optional,you can add ur custom report params there)`
 
+Example:
+```bash
+curl "http://localhost:8080/report/rpt_example?format=pdf&id=1"
+```
 
-Cheers!
+## Data
 
-_Gaurav_
-Data:
 Example data from http://sourceforge.net/p/jasperreports/code/ci/jr-6-3-1/tree/jasperreports/demo/samples/csvdatasource/
 
-Restore data:
+Restore data to a postgresql database:
+
+```sql
 CREATE TABLE example
 (
   id serial NOT NULL,
@@ -33,3 +48,4 @@ WITH (
 );
 
 copy example(place,age,name,address,status) FROM '/tmp/users.txt' with csv DELIMITER ','  quote '"' ;
+```bash

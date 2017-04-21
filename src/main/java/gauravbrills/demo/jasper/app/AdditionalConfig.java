@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gauravbrills.demo.jasper.app;
 
@@ -19,21 +19,19 @@ import org.springframework.web.servlet.view.jasperreports.JasperReportsViewResol
 @Configuration
 @EnableWebMvc
 public class AdditionalConfig extends WebMvcConfigurerAdapter {
+
     @Override
     public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
-
         configurer.enable();
     }
 
     @Bean
     public JasperReportsViewResolver getJasperReportsViewResolver() {
-
         JasperReportsViewResolver resolver = new JasperReportsViewResolver();
-        resolver.setPrefix("classpath:jasperreports/");
-        resolver.setSuffix(".jrxml");
-
+        resolver.setPrefix("classpath:reports/");
+        resolver.setSuffix(".jasper");
         resolver.setReportDataKey("datasource");
-        resolver.setViewNames("*rpt_*");
+        resolver.setViewNames("rpt_*");
         resolver.setViewClass(JasperReportsMultiFormatView.class);
         resolver.setOrder(0);
         return resolver;
@@ -41,9 +39,7 @@ public class AdditionalConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public ViewResolver htmlViewResolver() {
-
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-
         resolver.setPrefix("/pages/");
         resolver.setSuffix(".html");
         resolver.setOrder(1);

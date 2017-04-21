@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package gauravbrills.demo.jasper.web;
 
@@ -17,12 +17,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author grawat
  */
 @Controller
 @RequestMapping(value = "/reports")
 public class JasperEndPoint {
+  private static final Logger LOG = LoggerFactory.getLogger(JasperEndPoint.class);
+
     private static final String FILE_FORMAT = "format";
 
     private static final String DATASOURCE = "datasource";
@@ -37,17 +42,19 @@ public class JasperEndPoint {
      * modelMap.put(FILE_FORMAT, format); modelAndView = new ModelAndView(reportname, modelMap); return modelAndView; }
      */
     @RequestMapping(value = "{reportname}", method = RequestMethod.GET)
-    public ModelAndView getRptByParam(final ModelMap modelMap, ModelAndView modelAndView, @PathParam("reportname")
-    final String reportname, @RequestParam(FILE_FORMAT)
-    final String format, @RequestParam("id")
-    final String id) {
+    public ModelAndView getRptByParam(final ModelMap modelMap, ModelAndView modelAndView,
+      @PathParam("reportname")   final String reportname,
+      @RequestParam(FILE_FORMAT) final String format,
+      @RequestParam("id")        final String id) {
+
+
 
         List<String> paramMap = new ArrayList<>();
         paramMap.add(id);
-        // connecting to mysql
         modelMap.put(DATASOURCE, dbsoruce);
         modelMap.put(FILE_FORMAT, format);
         modelMap.put("productid", id);
+        LOG.debug(paramMap.toString());
         modelAndView = new ModelAndView(reportname, modelMap);
         return modelAndView;
     }
