@@ -36,9 +36,9 @@ public class JasperEndPoint {
     public ModelAndView getRptByParam(final ModelMap modelMap, ModelAndView modelAndView,
       @RequestParam("name") final String reportname,
       @RequestParam("format")     final String format,
-      @RequestParam("id")         final String id) {
+      @RequestParam(value = "id" , required = false)  final Integer id) {
         LOG.debug("getRptByParam");
-        
+
         modelMap.put(DATASOURCE, dbsoruce);
         modelMap.put("format", format);
         modelMap.put("id", id);
