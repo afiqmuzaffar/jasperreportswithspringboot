@@ -23,7 +23,7 @@ mvn clean package && java -jar target/jasperreportswithboot-0.0.1-SNAPSHOT.jar
 
 Example:
 ```bash
-curl "http://localhost:8080/report?name=rpt_A&format=pdf&id=1"
+curl "http://localhost:8080/report?name=rpt_all&format=pdf&id=1"
 ```
 
 ## Data
@@ -47,5 +47,7 @@ WITH (
   OIDS=FALSE
 );
 
+ALTER TABLE example  OWNER TO test;
+
 copy example(place,age,name,address,status) FROM '/tmp/users.txt' with csv DELIMITER ','  quote '"' ;
-```bash
+```
