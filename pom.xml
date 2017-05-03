@@ -11,6 +11,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jasperreportswithboot</name>
 	<description>demo of Jasper Reports with Spring Boot</description>
+
+	<properties>
+	   <docker.image.prefix>springio</docker.image.prefix>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -125,6 +130,25 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+
+			<plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.4.11</version>
+            <configuration>
+                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                <dockerDirectory>src/main/docker</dockerDirectory>
+                <resources>
+                    <resource>
+                        <targetPath>/</targetPath>
+                        <directory>${project.build.directory}</directory>
+                        <include>${project.build.finalName}.jar</include>
+                    </resource>
+                </resources>
+            </configuration>
+        </plugin>
+
+
 		</plugins>
 	</build>
 
@@ -153,5 +177,5 @@
 			<url>http://repo.spring.io/milestone</url>
 		</pluginRepository>
 	</pluginRepositories>
-	<packaging>war</packaging>
+
 </project>
