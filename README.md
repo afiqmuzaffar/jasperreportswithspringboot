@@ -74,9 +74,10 @@ Package and Run:
 ```bash
 mvn clean package && java -jar target/jasperreportswithboot-0.0.1-SNAPSHOT.jar
 ```
+WebApp listening on 
+http://localhost:8090/
 
-
-The jasper endpoints shall be like http://localhost:8080/report/name={report_name}&format={format}&id={id}
+The jasper endpoints shall be like http://localhost:8090/report/name={report_name}&format={format}&id={id}
 Notes:
 * id param are optional,you can add ur custom report params there
 * allowed formats: pdf, xls, html, csv
